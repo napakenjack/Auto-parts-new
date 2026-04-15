@@ -14,6 +14,8 @@ import { Checkout } from './pages/Checkout';
 import { OrderSuccess } from './pages/OrderSuccess';
 import { Profile } from './pages/Profile';
 import { About } from './pages/About';
+import { Auth } from './pages/Auth';
+import { OrderDetails } from './pages/OrderDetails';
 
 export default function App() {
   return (
@@ -29,6 +31,8 @@ export default function App() {
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/success" element={<OrderSuccess />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/auth" element={<Auth />} />
+            <Route path="/order/:id" element={<OrderDetails />} />
             <Route path="/about" element={<About />} />
             {/* Fallback routes */}
             <Route path="/favorites" element={<Profile />} />

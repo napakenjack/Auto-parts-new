@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { User, Package, Heart, MapPin, Settings, LogOut, Car } from 'lucide-react';
 
 export const Profile: React.FC = () => {
@@ -118,15 +119,43 @@ export const Profile: React.FC = () => {
                           <span className="bg-green-100 text-green-800 text-[10px] uppercase tracking-wider font-bold px-3 py-1 rounded">Доставлен</span>
                         </div>
                       </div>
-                      <div className="flex items-center gap-4">
-                        <div className="w-16 h-16 bg-slate-50 rounded border border-slate-200 overflow-hidden shrink-0">
-                           <img src="https://images.unsplash.com/photo-1600705722908-bab1e61c0b4d?auto=format&fit=crop&q=80&w=200" alt="Brake pads" className="w-full h-full object-cover" />
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <div className="flex items-center gap-4">
+                          <div className="w-16 h-16 bg-slate-50 rounded border border-slate-200 overflow-hidden shrink-0">
+                             <img src="https://images.unsplash.com/photo-1600705722908-bab1e61c0b4d?auto=format&fit=crop&q=80&w=200" alt="Brake pads" className="w-full h-full object-cover" />
+                          </div>
+                          <div className="flex-1">
+                            <h4 className="font-bold text-[14px] text-slate-900">Комплект керамических тормозных колодок премиум-класса</h4>
+                            <p className="text-[13px] text-slate-500">Кол-во: 2</p>
+                          </div>
                         </div>
-                        <div className="flex-1">
-                          <h4 className="font-bold text-[14px] text-slate-900">Комплект керамических тормозных колодок премиум-класса</h4>
-                          <p className="text-[13px] text-slate-500">Кол-во: 2</p>
+                        <div className="flex gap-3 mt-2 sm:mt-0">
+                          <button className="text-[13px] font-bold text-slate-600 hover:text-slate-900 border border-slate-200 hover:bg-slate-50 px-4 py-2 rounded transition-colors">Купить снова</button>
+                          <Link to="/order/AG-84729" className="text-[13px] font-bold text-white bg-orange-500 hover:bg-orange-600 px-4 py-2 rounded transition-colors">Подробнее</Link>
                         </div>
-                        <button className="hidden sm:block text-[13px] font-bold text-orange-500 hover:underline">Купить снова</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {activeTab === 'addresses' && (
+                <div>
+                  <div className="flex justify-between items-center mb-6">
+                    <h2 className="text-[18px] font-bold text-slate-900 border-l-4 border-orange-500 pl-3">Мои адреса</h2>
+                    <button className="text-[13px] font-bold text-orange-500 hover:underline">
+                      + Добавить адрес
+                    </button>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="border-2 border-orange-500 rounded p-4 relative bg-orange-50/30">
+                      <div className="absolute top-4 right-4 bg-orange-500 text-white text-[10px] uppercase tracking-wider font-bold px-2 py-1 rounded">Основной</div>
+                      <h3 className="font-bold text-slate-900 text-[16px] mb-1">Иван Иванов</h3>
+                      <p className="text-[13px] text-slate-600 mb-1">ул. Ленина, д. 1, кв. 1</p>
+                      <p className="text-[13px] text-slate-600 mb-4">Москва, 101000</p>
+                      <div className="flex gap-3">
+                        <button className="text-[13px] font-bold text-orange-500 hover:underline">Изменить</button>
+                        <button className="text-[13px] font-bold text-slate-500 hover:text-slate-900">Удалить</button>
                       </div>
                     </div>
                   </div>

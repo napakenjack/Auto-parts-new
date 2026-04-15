@@ -56,9 +56,9 @@ export const Header: React.FC = () => {
             <Heart size={18} className="mb-0.5" />
             <span>Избранное</span>
           </Link>
-          <Link to="/profile" className="hidden sm:flex flex-col items-center text-[11px] font-semibold text-slate-800 hover:text-orange-500 transition-colors">
+          <Link to="/auth" className="hidden sm:flex flex-col items-center text-[11px] font-semibold text-slate-800 hover:text-orange-500 transition-colors">
             <User size={18} className="mb-0.5" />
-            <span>Аккаунт</span>
+            <span>Войти</span>
           </Link>
           <Link to="/cart" className="flex flex-col items-center text-[11px] font-semibold text-slate-800 hover:text-orange-500 transition-colors">
             <ShoppingCart size={18} className="mb-0.5" />

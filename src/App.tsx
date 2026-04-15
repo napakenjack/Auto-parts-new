@@ -16,6 +16,8 @@ import { Profile } from './pages/Profile';
 import { About } from './pages/About';
 import { Auth } from './pages/Auth';
 import { OrderDetails } from './pages/OrderDetails';
+import { Admin } from './pages/Admin';
+import { AdminAuth } from './pages/AdminAuth';
 
 export default function App() {
   return (
@@ -33,6 +35,8 @@ export default function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/order/:id" element={<OrderDetails />} />
+            <Route path="/admin" element={<Admin />} />
+            <Route path="/admin/login" element={<AdminAuth />} />
             <Route path="/about" element={<About />} />
             {/* Fallback routes */}
             <Route path="/favorites" element={<Profile />} />

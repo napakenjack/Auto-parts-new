@@ -30,8 +30,7 @@ export const Header: React.FC = () => {
       <div className="h-[72px] flex items-center px-4 md:px-6 gap-4 md:gap-6 max-w-7xl mx-auto w-full">
         {/* Logo */}
         <Link to="/" className="font-extrabold text-[20px] text-slate-900 flex items-center gap-2 shrink-0">
-          <div className="w-6 h-6 bg-orange-500 rounded"></div>
-          AUTOPART PRO
+          <img src="" alt="OptParts" className="h-8 w-auto" />
         </Link>
 
         {/* Search Bar (Desktop) */}

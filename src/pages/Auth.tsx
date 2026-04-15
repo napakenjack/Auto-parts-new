@@ -85,6 +85,12 @@ export const Auth: React.FC = () => {
             </>
           )}
         </div>
+        
+        <div className="mt-8 text-center border-t border-slate-100 pt-6">
+          <Link to="/admin/login" className="text-[11px] text-slate-400 hover:text-slate-600 transition-colors">
+            Вход для сотрудников
+          </Link>
+        </div>
 
       </div>
     </div>

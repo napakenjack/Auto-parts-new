@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { User, Package, Heart, MapPin, Settings, LogOut, Car } from 'lucide-react';
+import { User, Package, Heart, MapPin, Settings, LogOut, Car, Shield } from 'lucide-react';
 
 export const Profile: React.FC = () => {
   const [activeTab, setActiveTab] = useState('garage');
@@ -55,6 +55,9 @@ export const Profile: React.FC = () => {
                   <Settings size={18} /> Настройки аккаунта
                 </button>
                 <div className="my-2 border-t border-slate-200"></div>
+                <Link to="/admin" className="w-full flex items-center gap-3 px-4 py-3 rounded text-[13px] font-bold text-slate-600 hover:bg-slate-50 transition-colors">
+                  <Shield size={18} /> Панель администратора
+                </Link>
                 <button className="w-full flex items-center gap-3 px-4 py-3 rounded text-[13px] font-bold text-red-600 hover:bg-red-50 transition-colors">
                   <LogOut size={18} /> Выйти
                 </button>

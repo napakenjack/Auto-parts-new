@@ -80,7 +80,7 @@ export const products: Product[] = [
     sku: 'VT-12V-HD',
     price: 129.99,
     oldPrice: 149.99,
-    image: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&q=80&w=600',
+    image: 'https://plus.unsplash.com/premium_photo-1681433401553-589104846604?q=80&w=2060&auto=format&fit=crop',
     category: 'Аккумуляторы',
     inStock: true,
     rating: 4.7,

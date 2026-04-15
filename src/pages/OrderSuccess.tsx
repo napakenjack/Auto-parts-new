@@ -33,7 +33,7 @@ export const OrderSuccess: React.FC = () => {
           </div>
           <div className="flex justify-between text-[13px]">
             <span className="text-slate-500">Сумма:</span>
-            <span className="font-bold text-slate-900">$122.83</span>
+            <span className="font-bold text-slate-900">122.83 ₸</span>
           </div>
         </div>
         

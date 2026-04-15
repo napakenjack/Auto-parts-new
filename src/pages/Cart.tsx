@@ -53,7 +53,7 @@ export const Cart: React.FC = () => {
                         
                         {/* Mobile Price & Actions */}
                         <div className="sm:hidden flex items-center justify-between mt-4">
-                          <div className="font-bold text-[14px] text-slate-900">${item.product.price.toFixed(2)}</div>
+                          <div className="font-bold text-[14px] text-slate-900">{item.product.price.toFixed(2)} ₸</div>
                           <div className="flex items-center gap-4">
                             <select className="border border-slate-200 rounded p-1 text-[13px] bg-white text-slate-800" defaultValue={item.quantity}>
                               {[1, 2, 3, 4, 5].map(n => <option key={n} value={n}>{n}</option>)}
@@ -66,7 +66,7 @@ export const Cart: React.FC = () => {
 
                     {/* Desktop Price */}
                     <div className="col-span-2 text-center hidden sm:block font-bold text-[14px] text-slate-900">
-                      ${item.product.price.toFixed(2)}
+                      {item.product.price.toFixed(2)} ₸
                     </div>
 
                     {/* Desktop Quantity */}
@@ -78,7 +78,7 @@ export const Cart: React.FC = () => {
 
                     {/* Desktop Total & Remove */}
                     <div className="col-span-2 flex items-center justify-end gap-4 hidden sm:flex">
-                      <div className="font-bold text-[14px] text-slate-900">${(item.product.price * item.quantity).toFixed(2)}</div>
+                      <div className="font-bold text-[14px] text-slate-900">{(item.product.price * item.quantity).toFixed(2)} ₸</div>
                       <button className="text-slate-400 hover:text-red-500 transition-colors" aria-label="Remove item">
                         <Trash2 size={18} />
                       </button>
@@ -104,26 +104,26 @@ export const Cart: React.FC = () => {
               <div className="space-y-4 mb-6 pb-6 border-b border-slate-200 text-[13px]">
                 <div className="flex justify-between text-slate-600">
                   <span>Подытог</span>
-                  <span className="font-bold text-slate-900">${subtotal.toFixed(2)}</span>
+                  <span className="font-bold text-slate-900">{subtotal.toFixed(2)} ₸</span>
                 </div>
                 <div className="flex justify-between text-slate-600">
                   <span>Доставка</span>
-                  <span className="font-bold text-slate-900">{shipping === 0 ? 'Бесплатно' : `$${shipping.toFixed(2)}`}</span>
+                  <span className="font-bold text-slate-900">{shipping === 0 ? 'Бесплатно' : `${shipping.toFixed(2)} ₸`}</span>
                 </div>
                 {shipping > 0 && (
                   <div className="text-[11px] text-orange-600 bg-orange-50 border border-orange-200 p-2 rounded">
-                    Добавьте еще на ${(50 - subtotal).toFixed(2)} в корзину для бесплатной доставки!
+                    Добавьте еще на {(50 - subtotal).toFixed(2)} ₸ в корзину для бесплатной доставки!
                   </div>
                 )}
                 <div className="flex justify-between text-slate-600">
                   <span>Расчетный налог</span>
-                  <span className="font-bold text-slate-900">${tax.toFixed(2)}</span>
+                  <span className="font-bold text-slate-900">{tax.toFixed(2)} ₸</span>
                 </div>
               </div>
 
               <div className="flex justify-between items-end mb-8">
                 <span className="text-[16px] font-bold text-slate-900">Итого</span>
-                <span className="text-[24px] font-bold text-slate-900">${total.toFixed(2)}</span>
+                <span className="text-[24px] font-bold text-slate-900">{total.toFixed(2)} ₸</span>
               </div>
 
               <Link to="/checkout" className="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 px-6 rounded transition-colors flex items-center justify-center gap-2 mb-4 text-[13px] uppercase">

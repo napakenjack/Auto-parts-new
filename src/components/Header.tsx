@@ -18,9 +18,9 @@ export const Header: React.FC = () => {
     <header className="bg-white text-slate-800 sticky top-0 z-50 border-b border-slate-200">
       {/* Top Bar */}
       <div className="bg-slate-900 text-white h-8 text-[11px] hidden sm:flex items-center justify-between px-6 tracking-wide">
-        <div>Доставка по всей Европе • Возможна доставка на следующий день</div>
+        <div>Доставка по всему Казахстану • Возможна доставка на следующий день</div>
         <div className="flex gap-5">
-          <span>Поддержка: +1 (800) 555-0199</span>
+          <span>Поддержка: +7 (7172) 12-34-56</span>
           <Link to="/profile" className="hover:text-orange-400 transition-colors">B2B Портал</Link>
           <span>Язык: RU</span>
         </div>
@@ -29,8 +29,8 @@ export const Header: React.FC = () => {
       {/* Main Header */}
       <div className="h-[72px] flex items-center px-4 md:px-6 gap-4 md:gap-6 max-w-7xl mx-auto w-full">
         {/* Logo */}
-        <Link to="/" className="font-extrabold text-[20px] text-slate-900 flex items-center gap-2 shrink-0">
-          <img src="" alt="OptParts" className="h-8 w-auto" />
+        <Link to="/" className="font-extrabold text-[20px] flex items-center gap-1 shrink-0 tracking-tight">
+          <span className="text-slate-900">Opt</span><span className="text-orange-500">Parts</span>
         </Link>
 
         {/* Search Bar (Desktop) */}
@@ -61,7 +61,7 @@ export const Header: React.FC = () => {
           </Link>
           <Link to="/cart" className="flex flex-col items-center text-[11px] font-semibold text-slate-800 hover:text-orange-500 transition-colors">
             <ShoppingCart size={18} className="mb-0.5" />
-            <span>$142.50</span>
+            <span>142.50 ₸</span>
           </Link>
           <button className="md:hidden text-slate-800" onClick={() => setIsMenuOpen(!isMenuOpen)}>
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}

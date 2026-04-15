@@ -76,8 +76,8 @@ export const OrderDetails: React.FC = () => {
                     <div className="text-[12px] text-slate-500 mt-1">Артикул: BM-CP-9021</div>
                   </div>
                   <div className="text-center sm:text-right">
-                    <div className="text-[12px] text-slate-500 mb-1">2 шт x $45.99</div>
-                    <div className="font-bold text-[16px] text-slate-900">$91.98</div>
+                    <div className="text-[12px] text-slate-500 mb-1">2 шт x 45.99 ₸</div>
+                    <div className="font-bold text-[16px] text-slate-900">91.98 ₸</div>
                   </div>
                 </div>
               </div>
@@ -94,20 +94,20 @@ export const OrderDetails: React.FC = () => {
               <div className="space-y-3 mb-4 pb-4 border-b border-slate-200 text-[13px]">
                 <div className="flex justify-between text-slate-600">
                   <span>Товары (2)</span>
-                  <span className="font-bold text-slate-900">$91.98</span>
+                  <span className="font-bold text-slate-900">91.98 ₸</span>
                 </div>
                 <div className="flex justify-between text-slate-600">
                   <span>Доставка</span>
-                  <span className="font-bold text-slate-900">$9.99</span>
+                  <span className="font-bold text-slate-900">9.99 ₸</span>
                 </div>
                 <div className="flex justify-between text-slate-600">
                   <span>Налог</span>
-                  <span className="font-bold text-slate-900">$3.01</span>
+                  <span className="font-bold text-slate-900">3.01 ₸</span>
                 </div>
               </div>
               <div className="flex justify-between items-end">
                 <span className="text-[16px] font-bold text-slate-900">Итого</span>
-                <span className="text-[24px] font-bold text-slate-900">$104.98</span>
+                <span className="text-[24px] font-bold text-slate-900">104.98 ₸</span>
               </div>
             </div>
 
@@ -116,8 +116,8 @@ export const OrderDetails: React.FC = () => {
               <h2 className="text-[16px] font-bold text-slate-900 mb-4 border-l-4 border-orange-500 pl-3">Доставка</h2>
               <div className="text-[13px] text-slate-600 space-y-1 mb-4">
                 <div className="font-bold text-slate-900">Иван Иванов</div>
-                <div>ул. Ленина, д. 1, кв. 1</div>
-                <div>Москва, 101000</div>
+                <div>ул. Кунаева, д. 1, кв. 1</div>
+                <div>Астана, 010000</div>
                 <div>+7 (999) 000-00-00</div>
               </div>
               <div className="bg-slate-50 p-3 rounded text-[12px] text-slate-600 border border-slate-200">

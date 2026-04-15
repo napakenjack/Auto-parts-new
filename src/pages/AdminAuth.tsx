@@ -19,7 +19,7 @@ export const AdminAuth: React.FC = () => {
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-[13px] font-bold text-slate-700 mb-1">Логин / Email</label>
-            <input required type="text" className="w-full border border-slate-200 rounded p-2.5 outline-none focus:border-orange-500 text-[14px]" placeholder="admin@optparts.ru" />
+            <input required type="text" className="w-full border border-slate-200 rounded p-2.5 outline-none focus:border-orange-500 text-[14px]" placeholder="admin@optparts.kz" />
           </div>
           <div>
             <label className="block text-[13px] font-bold text-slate-700 mb-1">Пароль</label>

@@ -50,9 +50,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       </div>
 
       <div className="flex items-baseline gap-2 mt-auto">
-        <span className="text-[18px] font-bold text-slate-900">${product.price.toFixed(2)}</span>
+        <span className="text-[18px] font-bold text-slate-900">{product.price.toFixed(2)} ₸</span>
         {product.oldPrice && (
-          <span className="text-[12px] line-through text-slate-500">${product.oldPrice.toFixed(2)}</span>
+          <span className="text-[12px] line-through text-slate-500">{product.oldPrice.toFixed(2)} ₸</span>
         )}
       </div>
 

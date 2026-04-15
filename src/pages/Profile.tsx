@@ -117,7 +117,7 @@ export const Profile: React.FC = () => {
                         <div className="flex items-center gap-4">
                           <div className="text-right">
                             <div className="text-[11px] text-slate-500 mb-1 uppercase tracking-wider font-bold">Итого</div>
-                            <div className="font-bold text-[14px] text-slate-900">$104.98</div>
+                            <div className="font-bold text-[14px] text-slate-900">104.98 ₸</div>
                           </div>
                           <span className="bg-green-100 text-green-800 text-[10px] uppercase tracking-wider font-bold px-3 py-1 rounded">Доставлен</span>
                         </div>
@@ -154,8 +154,8 @@ export const Profile: React.FC = () => {
                     <div className="border-2 border-orange-500 rounded p-4 relative bg-orange-50/30">
                       <div className="absolute top-4 right-4 bg-orange-500 text-white text-[10px] uppercase tracking-wider font-bold px-2 py-1 rounded">Основной</div>
                       <h3 className="font-bold text-slate-900 text-[16px] mb-1">Иван Иванов</h3>
-                      <p className="text-[13px] text-slate-600 mb-1">ул. Ленина, д. 1, кв. 1</p>
-                      <p className="text-[13px] text-slate-600 mb-4">Москва, 101000</p>
+                      <p className="text-[13px] text-slate-600 mb-1">ул. Кунаева, д. 1, кв. 1</p>
+                      <p className="text-[13px] text-slate-600 mb-4">Астана, 010000</p>
                       <div className="flex gap-3">
                         <button className="text-[13px] font-bold text-orange-500 hover:underline">Изменить</button>
                         <button className="text-[13px] font-bold text-slate-500 hover:text-slate-900">Удалить</button>

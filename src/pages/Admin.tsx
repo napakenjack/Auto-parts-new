@@ -147,7 +147,7 @@ export const Admin: React.FC = () => {
               <input type="number" defaultValue="25" className="w-full border border-slate-200 rounded p-2.5 outline-none focus:border-orange-500 text-[14px]" />
             </div>
             <div>
-              <label className="block text-[13px] font-bold text-slate-700 mb-1">Минимальная маржа ($)</label>
+              <label className="block text-[13px] font-bold text-slate-700 mb-1">Минимальная маржа (₸)</label>
               <input type="number" defaultValue="5" className="w-full border border-slate-200 rounded p-2.5 outline-none focus:border-orange-500 text-[14px]" />
             </div>
             <div>
@@ -307,7 +307,7 @@ export const Admin: React.FC = () => {
                 <td className="p-4 font-bold text-slate-900">#AG-84729</td>
                 <td className="p-4 text-slate-500">12 Окт 2023</td>
                 <td className="p-4 text-slate-900">Иван Иванов</td>
-                <td className="p-4 font-bold text-slate-900">$104.98</td>
+                <td className="p-4 font-bold text-slate-900">104.98 ₸</td>
                 <td className="p-4"><span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-[10px] font-bold uppercase">В обработке</span></td>
                 <td className="p-4 text-right">
                   <button onClick={() => setViewingOrder({ id: 'AG-84729' })} className="text-orange-500 hover:text-orange-600 font-bold text-[12px] uppercase">Подробнее</button>
@@ -317,7 +317,7 @@ export const Admin: React.FC = () => {
                 <td className="p-4 font-bold text-slate-900">#AG-84728</td>
                 <td className="p-4 text-slate-500">11 Окт 2023</td>
                 <td className="p-4 text-slate-900">Анна Смирнова</td>
-                <td className="p-4 font-bold text-slate-900">$45.00</td>
+                <td className="p-4 font-bold text-slate-900">45.00 ₸</td>
                 <td className="p-4"><span className="bg-green-100 text-green-800 px-2 py-1 rounded text-[10px] font-bold uppercase">Доставлен</span></td>
                 <td className="p-4 text-right">
                   <button onClick={() => setViewingOrder({ id: 'AG-84728' })} className="text-orange-500 hover:text-orange-600 font-bold text-[12px] uppercase">Подробнее</button>
@@ -357,7 +357,7 @@ export const Admin: React.FC = () => {
                     <td className="p-3 text-slate-500">BM-CP-9021</td>
                     <td className="p-3 font-bold text-slate-900">Комплект керамических тормозных колодок</td>
                     <td className="p-3 text-center">2</td>
-                    <td className="p-3 text-right font-bold">$91.98</td>
+                    <td className="p-3 text-right font-bold">91.98 ₸</td>
                   </tr>
                 </tbody>
               </table>
@@ -395,7 +395,7 @@ export const Admin: React.FC = () => {
               <div><span className="font-bold text-slate-900">Телефон:</span> +7 (999) 000-00-00</div>
               <div className="pt-2 border-t border-slate-100 mt-2">
                 <span className="font-bold text-slate-900 block mb-1">Адрес доставки:</span>
-                ул. Ленина, д. 1, кв. 1<br/>Москва, 101000
+                ул. Кунаева, д. 1, кв. 1<br/>Астана, 010000
               </div>
             </div>
           </div>

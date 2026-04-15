@@ -60,7 +60,7 @@ export const Checkout: React.FC = () => {
                   />
                   <div>
                     <div className="font-bold text-[14px] text-slate-900 flex items-center gap-2"><Truck size={16} /> Доставка курьером</div>
-                    <div className="text-[12px] text-slate-500 mt-1">От 1 до 3 дней. Стоимость: $9.99</div>
+                    <div className="text-[12px] text-slate-500 mt-1">От 1 до 3 дней. Стоимость: 9.99 ₸</div>
                   </div>
                 </label>
                 <label className={`border rounded-lg p-4 cursor-pointer flex items-start gap-3 transition-colors ${deliveryMethod === 'pickup' ? 'border-orange-500 bg-orange-50/30' : 'border-slate-200 hover:border-slate-300'}`}>
@@ -83,11 +83,11 @@ export const Checkout: React.FC = () => {
                 <div className="space-y-4">
                   <div>
                     <label className="block text-[13px] font-bold text-slate-700 mb-1">Город *</label>
-                    <input required type="text" className="w-full border border-slate-200 rounded p-2.5 outline-none focus:border-orange-500 text-[14px]" placeholder="Москва" />
+                    <input required type="text" className="w-full border border-slate-200 rounded p-2.5 outline-none focus:border-orange-500 text-[14px]" placeholder="Астана" />
                   </div>
                   <div>
                     <label className="block text-[13px] font-bold text-slate-700 mb-1">Адрес (Улица, дом, квартира) *</label>
-                    <input required type="text" className="w-full border border-slate-200 rounded p-2.5 outline-none focus:border-orange-500 text-[14px]" placeholder="ул. Ленина, д. 1, кв. 1" />
+                    <input required type="text" className="w-full border border-slate-200 rounded p-2.5 outline-none focus:border-orange-500 text-[14px]" placeholder="ул. Кунаева, д. 1, кв. 1" />
                   </div>
                 </div>
               )}
@@ -128,21 +128,21 @@ export const Checkout: React.FC = () => {
               <div className="space-y-4 mb-6 pb-6 border-b border-slate-200 text-[13px]">
                 <div className="flex justify-between text-slate-600">
                   <span>Товары (3)</span>
-                  <span className="font-bold text-slate-900">$104.48</span>
+                  <span className="font-bold text-slate-900">104.48 ₸</span>
                 </div>
                 <div className="flex justify-between text-slate-600">
                   <span>Доставка</span>
-                  <span className="font-bold text-slate-900">{deliveryMethod === 'delivery' ? '$9.99' : 'Бесплатно'}</span>
+                  <span className="font-bold text-slate-900">{deliveryMethod === 'delivery' ? '9.99 ₸' : 'Бесплатно'}</span>
                 </div>
                 <div className="flex justify-between text-slate-600">
                   <span>Налог</span>
-                  <span className="font-bold text-slate-900">$8.36</span>
+                  <span className="font-bold text-slate-900">8.36 ₸</span>
                 </div>
               </div>
 
               <div className="flex justify-between items-end mb-8">
                 <span className="text-[16px] font-bold text-slate-900">Итого</span>
-                <span className="text-[24px] font-bold text-slate-900">${deliveryMethod === 'delivery' ? '122.83' : '112.84'}</span>
+                <span className="text-[24px] font-bold text-slate-900">{deliveryMethod === 'delivery' ? '122.83 ₸' : '112.84 ₸'}</span>
               </div>
 
               <button type="submit" className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-6 rounded transition-colors flex items-center justify-center gap-2 mb-4 text-[14px] uppercase tracking-wider">

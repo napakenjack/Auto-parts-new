@@ -41,9 +41,8 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {/* Brand */}
           <div>
-            <Link to="/" className="font-extrabold text-[20px] text-white flex items-center gap-2 mb-6">
-              <div className="w-6 h-6 bg-orange-500 rounded"></div>
-              AUTOPART PRO
+            <Link to="/" className="font-extrabold text-[20px] flex items-center gap-1 mb-6 tracking-tight">
+              <span className="text-white">Opt</span><span className="text-orange-500">Parts</span>
             </Link>
             <p className="text-sm mb-6 leading-relaxed">
               Ваш надежный источник высококачественных автозапчастей. Мы предоставляем надежные компоненты для механиков и автовладельцев по всей стране.
@@ -85,22 +84,22 @@ export const Footer: React.FC = () => {
             <ul className="space-y-4 text-sm">
               <li className="flex items-start gap-3">
                 <MapPin size={18} className="text-orange-500 shrink-0 mt-0.5" />
-                <span>123 Путь Автозапчастей<br />Детройт, Мичиган 48201</span>
+                <span>ул. Кунаева, 123<br />Астана, 010000</span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone size={18} className="text-orange-500 shrink-0" />
-                <span>1-800-AUTOPART</span>
+                <span>+7 (7172) 12-34-56</span>
               </li>
               <li className="flex items-center gap-3">
                 <Mail size={18} className="text-orange-500 shrink-0" />
-                <span>support@autopartpro.example.com</span>
+                <span>support@optparts.kz</span>
               </li>
             </ul>
           </div>
         </div>
 
         <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
-          <p>&copy; {new Date().getFullYear()} AutoPart Pro. Все права защищены.</p>
+          <p>&copy; {new Date().getFullYear()} OptParts. Все права защищены.</p>
           <div className="flex space-x-6">
             <Link to="/about" className="hover:text-white transition-colors">Политика конфиденциальности</Link>
             <Link to="/about" className="hover:text-white transition-colors">Условия обслуживания</Link>

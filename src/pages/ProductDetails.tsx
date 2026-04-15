@@ -81,9 +81,9 @@ export const ProductDetails: React.FC = () => {
 
               <div className="mb-6">
                 <div className="flex items-end gap-3 mb-2">
-                  <span className="text-4xl font-bold text-slate-900">${product.price.toFixed(2)}</span>
+                  <span className="text-4xl font-bold text-slate-900">{product.price.toFixed(2)} ₸</span>
                   {product.oldPrice && (
-                    <span className="text-lg text-slate-400 line-through mb-1">${product.oldPrice.toFixed(2)}</span>
+                    <span className="text-lg text-slate-400 line-through mb-1">{product.oldPrice.toFixed(2)} ₸</span>
                   )}
                 </div>
                 {product.inStock ? (
@@ -132,12 +132,12 @@ export const ProductDetails: React.FC = () => {
                         <td className="py-4 px-4 font-semibold text-slate-900">
                           <div className="flex items-center gap-2">
                             <Star size={14} className="text-orange-500 fill-orange-500" />
-                            Центральный склад (Москва)
+                            Центральный склад (Астана)
                           </div>
                         </td>
                         <td className="py-4 px-4 text-slate-600">1-2 дня</td>
                         <td className="py-4 px-4 text-green-600 font-semibold">В наличии (&gt;10 шт)</td>
-                        <td className="py-4 px-4 font-bold text-slate-900 text-[15px]">${product.price.toFixed(2)}</td>
+                        <td className="py-4 px-4 font-bold text-slate-900 text-[15px]">{product.price.toFixed(2)} ₸</td>
                         <td className="py-4 px-4 text-right">
                           <button className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded font-bold transition-colors uppercase text-[11px] flex items-center gap-2 ml-auto">
                             <ShoppingCart size={14} /> В корзину
@@ -146,10 +146,10 @@ export const ProductDetails: React.FC = () => {
                       </tr>
                       {/* Other Offers */}
                       <tr className="hover:bg-slate-50 transition-colors">
-                        <td className="py-4 px-4 text-slate-700">Склад Партнера (СПб)</td>
+                        <td className="py-4 px-4 text-slate-700">Склад Партнера (Алматы)</td>
                         <td className="py-4 px-4 text-slate-600">3-5 дней</td>
                         <td className="py-4 px-4 text-slate-600">4 шт</td>
-                        <td className="py-4 px-4 font-bold text-slate-900 text-[15px]">${(product.price * 0.95).toFixed(2)}</td>
+                        <td className="py-4 px-4 font-bold text-slate-900 text-[15px]">{(product.price * 0.95).toFixed(2)} ₸</td>
                         <td className="py-4 px-4 text-right">
                           <button className="bg-slate-900 hover:bg-slate-800 text-white px-4 py-2 rounded font-bold transition-colors uppercase text-[11px] flex items-center gap-2 ml-auto">
                             <ShoppingCart size={14} /> В корзину
@@ -157,10 +157,10 @@ export const ProductDetails: React.FC = () => {
                         </td>
                       </tr>
                       <tr className="hover:bg-slate-50 transition-colors">
-                        <td className="py-4 px-4 text-slate-700">Склад Партнера (Екатеринбург)</td>
+                        <td className="py-4 px-4 text-slate-700">Склад Партнера (Шымкент)</td>
                         <td className="py-4 px-4 text-slate-600">7-10 дней</td>
                         <td className="py-4 px-4 text-slate-600">Под заказ</td>
-                        <td className="py-4 px-4 font-bold text-slate-900 text-[15px]">${(product.price * 0.9).toFixed(2)}</td>
+                        <td className="py-4 px-4 font-bold text-slate-900 text-[15px]">{(product.price * 0.9).toFixed(2)} ₸</td>
                         <td className="py-4 px-4 text-right">
                           <button className="bg-slate-900 hover:bg-slate-800 text-white px-4 py-2 rounded font-bold transition-colors uppercase text-[11px] flex items-center gap-2 ml-auto">
                             <ShoppingCart size={14} /> В корзину
@@ -178,7 +178,7 @@ export const ProductDetails: React.FC = () => {
                   <Truck className="text-orange-500" size={24} />
                   <div>
                     <div className="text-[13px] font-bold text-slate-900">Бесплатная доставка</div>
-                    <div className="text-[11px] text-slate-500">При заказе от $50</div>
+                    <div className="text-[11px] text-slate-500">При заказе от 50 ₸</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">

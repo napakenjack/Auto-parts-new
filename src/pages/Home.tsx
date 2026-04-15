@@ -9,7 +9,7 @@ export const Home: React.FC = () => {
 
   const getCategoryIcon = (name: string) => {
     switch (name) {
-      case 'Engine': return '⚙️';
+      case 'Engine': return 'https://static.vecteezy.com/system/resources/thumbnails/005/863/120/small/performance-car-air-filter-icon-isolated-on-white-background-vehicle-performance-parts-cone-filter-induction-sign-air-intake-free-vector.jpg';
       case 'Brakes': return '🛑';
       case 'Lighting': return '💡';
       case 'Suspension': return '🔄';

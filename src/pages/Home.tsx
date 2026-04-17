@@ -1,12 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ShieldCheck, Truck, Wrench, Search } from 'lucide-react';
+import { Search } from 'lucide-react';
 import { ProductCard } from '../components/ProductCard';
 import { products } from '../data/products';
 import { ALL_CATEGORIES } from '../data/categories';
+import { useStore } from '../store';
 
 export const Home: React.FC = () => {
   const featuredProducts = products.slice(0, 4);
+  const news = useStore(state => state.news);
 
   return (
     <div className="bg-slate-50 min-h-screen flex flex-col">
@@ -39,42 +41,37 @@ export const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Trust Block */}
-      <div className="bg-white border-b border-slate-200 py-6">
-        <div className="max-w-7xl mx-auto px-4 md:px-6 flex flex-wrap justify-center md:justify-between gap-6 text-center md:text-left">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-green-50 text-green-600 flex items-center justify-center shrink-0">
-              <ShieldCheck size={20} />
-            </div>
-            <div>
-              <div className="text-[13px] font-bold text-slate-900">Гарантия качества</div>
-              <div className="text-[11px] text-slate-500">Только проверенные поставщики</div>
-            </div>
-          </div>
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
-              <Truck size={20} />
-            </div>
-            <div>
-              <div className="text-[13px] font-bold text-slate-900">Быстрая доставка</div>
-              <div className="text-[11px] text-slate-500">Отправка в день заказа</div>
-            </div>
-          </div>
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-orange-50 text-orange-600 flex items-center justify-center shrink-0">
-              <Wrench size={20} />
-            </div>
-            <div>
-              <div className="text-[13px] font-bold text-slate-900">Точный подбор</div>
-              <div className="text-[11px] text-slate-500">Проверка совместимости по VIN</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Main Content */}
-      <main className="p-5 md:p-6 flex-grow max-w-7xl mx-auto w-full">
+      <main className="p-4 md:p-6 lg:p-8 flex-grow max-w-[1920px] mx-auto w-full">
         
+        {/* News Feed Section */}
+        {news.length > 0 && (
+          <div className="mb-12">
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-[20px] font-bold border-l-4 border-orange-500 pl-3 text-slate-900">Лента новостей</h2>
+              <Link to="/news" className="text-[13px] font-bold text-orange-500 hover:text-orange-600 uppercase tracking-wider hidden sm:block">
+                Смотреть ленту →
+              </Link>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+              {news.slice(0, 4).map((item) => (
+                <Link key={item.id} to={`/news/${item.id}`} className="bg-white border border-slate-200 rounded-lg overflow-hidden flex h-[80px] group hover:border-orange-500 hover:shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-orange-500">
+                  <div className="w-[100px] sm:w-[120px] h-full shrink-0 relative overflow-hidden">
+                    <img src={item.image} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  </div>
+                  <div className="p-3 flex flex-col justify-center flex-1 min-w-0">
+                    <div className="text-[10px] text-slate-400 font-bold mb-1 uppercase tracking-wide">{new Date(item.date).toLocaleDateString('ru-RU')}</div>
+                    <h3 className="text-[13px] font-bold text-slate-900 leading-tight line-clamp-2 group-hover:text-orange-600 transition-colors">{item.title}</h3>
+                  </div>
+                </Link>
+              ))}
+            </div>
+            <Link to="/news" className="w-full sm:hidden mt-4 bg-slate-100 hover:bg-slate-200 text-slate-800 text-[13px] font-bold py-3 rounded-lg flex justify-center text-center transition-colors">
+              Смотреть всю ленту
+            </Link>
+          </div>
+        )}
+
         {/* Catalog Categories - List Style */}
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-[20px] font-bold border-l-4 border-orange-500 pl-3 text-slate-900">Каталог автозапчастей</h2>
@@ -82,8 +79,8 @@ export const Home: React.FC = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {ALL_CATEGORIES.map((categoryGroup, index) => (
-            <div key={index} className="bg-white border border-slate-200 rounded-lg p-5">
-              <h3 className="text-[15px] font-bold text-slate-900 mb-4 border-b border-slate-100 pb-2">{categoryGroup.group}</h3>
+            <div key={index} className="bg-white border border-slate-200 rounded-lg p-5 hover:border-orange-500 transition-colors hover:shadow-sm group">
+              <h3 className="text-[15px] font-bold text-slate-900 mb-4 border-b border-slate-100 pb-2 group-hover:text-orange-600 transition-colors">{categoryGroup.group}</h3>
               <ul className="space-y-2.5">
                 {categoryGroup.items.map((item, idx) => (
                   <li key={idx}>
@@ -91,7 +88,7 @@ export const Home: React.FC = () => {
                       to={`/catalog?category=${encodeURIComponent(item)}`}
                       className="text-[13px] text-slate-600 hover:text-orange-500 hover:underline flex items-center gap-2"
                     >
-                      <span className="w-1.5 h-1.5 rounded-full bg-slate-200 inline-block"></span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-slate-200 inline-block group-hover:bg-orange-200 transition-colors"></span>
                       {item}
                     </Link>
                   </li>

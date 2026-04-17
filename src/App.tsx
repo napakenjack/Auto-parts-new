@@ -7,6 +7,8 @@ import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-d
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { Home } from './pages/Home';
+import { NewsList } from './pages/NewsList';
+import { NewsArticle } from './pages/NewsArticle';
 import { Catalog } from './pages/Catalog';
 import { ProductDetails } from './pages/ProductDetails';
 import { Cart } from './pages/Cart';
@@ -29,6 +31,8 @@ function AppContent() {
       <main className="flex-1 flex flex-col">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/news" element={<NewsList />} />
+          <Route path="/news/:id" element={<NewsArticle />} />
           <Route path="/catalog" element={<Catalog />} />
           <Route path="/product/:id" element={<ProductDetails />} />
           <Route path="/cart" element={<Cart />} />

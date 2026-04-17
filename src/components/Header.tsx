@@ -27,7 +27,7 @@ export const Header: React.FC = () => {
       </div>
 
       {/* Main Header */}
-      <div className="h-[72px] flex items-center px-4 md:px-6 gap-4 md:gap-6 max-w-7xl mx-auto w-full">
+      <div className="h-[72px] flex items-center px-4 md:px-6 gap-4 md:gap-6 max-w-[1920px] mx-auto w-full">
         {/* Logo */}
         <Link to="/" className="font-extrabold text-[20px] flex items-center gap-1 shrink-0 tracking-tight">
           <span className="text-slate-900">Opt</span><span className="text-orange-500">Parts</span>

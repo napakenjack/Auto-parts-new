@@ -55,7 +55,7 @@ export const Catalog: React.FC = () => {
 
   return (
     <div className="bg-slate-50 min-h-screen py-8">
-      <div className="max-w-7xl mx-auto px-4 md:px-6">
+      <div className="max-w-[1920px] w-full mx-auto px-4 md:px-6 lg:px-8">
         
         {/* Breadcrumbs & Title */}
         <div className="mb-6">
@@ -95,7 +95,7 @@ export const Catalog: React.FC = () => {
             </div>
             
             {/* Search Bar */}
-            <div className="w-full md:w-72 relative">
+            <div className="w-full md:w-[400px] lg:w-[600px] relative">
               <input 
                 type="text" 
                 placeholder="Поиск в каталоге..." 

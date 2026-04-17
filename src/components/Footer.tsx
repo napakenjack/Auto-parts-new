@@ -37,7 +37,7 @@ export const Footer: React.FC = () => {
         </div>
       </div>
 
-      <div className="pt-16 pb-8 border-t border-slate-800 max-w-7xl mx-auto px-4">
+      <div className="pt-16 pb-8 border-t border-slate-800 max-w-[1600px] mx-auto px-2 lg:px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {/* Brand */}
           <div>

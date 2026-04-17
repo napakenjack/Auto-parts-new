@@ -260,12 +260,12 @@ export const Catalog: React.FC = () => {
             {!brandParam ? (
               <div className="bg-white border border-slate-200 rounded-lg p-6 mb-6">
                 <h2 className="text-lg font-bold text-slate-900 mb-4 border-l-4 border-orange-500 pl-3">Выберите марку автомобиля</h2>
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2">
+                <div className="flex flex-wrap gap-2">
                   {CAR_BRANDS.map(brand => (
                     <button 
                       key={brand}
                       onClick={() => updateParam('brand', brand)}
-                      className="text-[13px] border border-slate-200 p-2 text-center rounded hover:border-orange-500 hover:text-orange-600 transition-colors bg-slate-50 hover:bg-orange-50"
+                      className="text-[13px] border border-slate-200 px-4 py-2 rounded hover:border-orange-500 hover:text-orange-600 transition-colors bg-slate-50 hover:bg-orange-50"
                     >
                       {brand}
                     </button>
@@ -278,13 +278,13 @@ export const Catalog: React.FC = () => {
                   <h2 className="text-lg font-bold text-slate-900 border-l-4 border-orange-500 pl-3">Модели {brandParam}</h2>
                   <button onClick={() => clearSelection('brand')} className="text-[12px] text-slate-500 hover:text-orange-500 underline">Все марки</button>
                 </div>
-                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2">
+                <div className="flex flex-wrap gap-2">
                   {/* Using TOYOTA_MODELS as a mock for all brands, in real app it would fetch based on brand */}
                   {TOYOTA_MODELS.map(model => (
                     <button 
                       key={model}
                       onClick={() => updateParam('model', model)}
-                      className="text-[13px] border border-slate-200 p-2 text-center rounded hover:border-orange-500 hover:text-orange-600 transition-colors bg-slate-50 hover:bg-orange-50"
+                      className="text-[13px] border border-slate-200 px-4 py-2 rounded hover:border-orange-500 hover:text-orange-600 transition-colors bg-slate-50 hover:bg-orange-50"
                     >
                       {model}
                     </button>
@@ -297,12 +297,12 @@ export const Catalog: React.FC = () => {
                   <h2 className="text-lg font-bold text-slate-900 border-l-4 border-orange-500 pl-3">Год выпуска: {brandParam} {modelParam}</h2>
                   <button onClick={() => clearSelection('model')} className="text-[12px] text-slate-500 hover:text-orange-500 underline">Назад к моделям</button>
                 </div>
-                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
+                <div className="flex flex-wrap gap-2">
                   {TOYOTA_YEARS.map(year => (
                     <button 
                       key={year}
                       onClick={() => updateParam('year', year)}
-                      className="text-[13px] border border-slate-200 p-2 text-center rounded hover:border-orange-500 hover:text-orange-600 transition-colors bg-slate-50 hover:bg-orange-50 font-bold"
+                      className="text-[13px] border border-slate-200 px-4 py-2 rounded hover:border-orange-500 hover:text-orange-600 transition-colors bg-slate-50 hover:bg-orange-50 font-bold"
                     >
                       {year}
                     </button>

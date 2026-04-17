@@ -1,13 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Check } from 'lucide-react';
+import { Check, Heart } from 'lucide-react';
 import { Product } from '../data/products';
+import { useStore } from '../store';
 
 interface ProductCardProps {
   product: Product;
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+  const isFavorite = useStore((state) => state.isFavorite(product.id));
+  const toggleFavorite = useStore((state) => state.toggleFavorite);
+
+  const handleFavoriteClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    toggleFavorite(product);
+  };
+
   return (
     <div className="bg-white border border-slate-200 rounded-lg p-3 flex flex-col relative group">
       {/* Badge */}
@@ -16,6 +25,15 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           -15%
         </div>
       )}
+
+      {/* Favorite Button */}
+      <button 
+        onClick={handleFavoriteClick}
+        className={`absolute top-2 right-2 z-10 p-1.5 rounded-full bg-white/80 hover:bg-white shadow-sm transition-colors ${isFavorite ? 'text-orange-500' : 'text-slate-400 hover:text-orange-500'}`}
+        title={isFavorite ? "Убрать из избранного" : "В избранное"}
+      >
+        <Heart size={16} className={isFavorite ? 'fill-orange-500' : ''} />
+      </button>
 
       {/* Image Container */}
       <Link to={`/product/${product.id}`} className="w-full h-[120px] bg-slate-50 rounded mb-3 flex items-center justify-center overflow-hidden">

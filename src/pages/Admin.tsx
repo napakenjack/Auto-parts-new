@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   LayoutDashboard, Truck, Percent, GitMerge, ShoppingCart, Activity,
   ArrowLeft, Search, Filter, Edit, CheckCircle, XCircle,
-  Plus, Save
+  Plus, Save, LogOut, Bell, Settings
 } from 'lucide-react';
 
 export const Admin: React.FC = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [editingSupplier, setEditingSupplier] = useState<any>(null);
   const [viewingOrder, setViewingOrder] = useState<any>(null);
+  const navigate = useNavigate();
 
   const renderDashboard = () => (
     <div>
@@ -487,44 +488,86 @@ export const Admin: React.FC = () => {
   );
 
   return (
-    <div className="bg-slate-50 min-h-screen py-8">
-      <div className="max-w-7xl mx-auto px-4 md:px-6">
-        <div className="flex justify-between items-center mb-8">
-          <h1 className="text-[24px] font-bold text-slate-900">Панель администратора</h1>
-          <Link to="/profile" className="text-[13px] font-bold text-orange-500 hover:underline flex items-center gap-2">
-            <ArrowLeft size={16} /> Вернуться в магазин
+    <div className="flex h-screen bg-slate-100 font-sans text-slate-800 overflow-hidden">
+      {/* Sidebar */}
+      <aside className="w-64 bg-slate-900 text-slate-300 flex flex-col shrink-0">
+        <div className="h-16 flex items-center px-6 border-b border-slate-800 shrink-0">
+          <Link to="/" className="font-extrabold text-[20px] flex items-center gap-1 tracking-tight">
+            <span className="text-white">Opt</span><span className="text-orange-500">Parts</span>
           </Link>
+          <span className="ml-2 text-[10px] bg-slate-800 px-2 py-0.5 rounded text-slate-400 font-bold uppercase tracking-wider">Admin</span>
+        </div>
+        
+        <div className="p-4 flex-1 overflow-y-auto">
+          <div className="text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-2 px-3 mt-2">Управление</div>
+          <nav className="space-y-1">
+            <button onClick={() => {setActiveTab('dashboard'); setEditingSupplier(null); setViewingOrder(null);}} className={`w-full flex items-center gap-3 px-3 py-2.5 rounded text-[13px] font-medium transition-colors ${activeTab === 'dashboard' ? 'bg-orange-500 text-white' : 'hover:bg-slate-800 hover:text-white'}`}>
+              <LayoutDashboard size={18} /> Дашборд
+            </button>
+            <button onClick={() => {setActiveTab('orders'); setEditingSupplier(null); setViewingOrder(null);}} className={`w-full flex items-center gap-3 px-3 py-2.5 rounded text-[13px] font-medium transition-colors ${activeTab === 'orders' ? 'bg-orange-500 text-white' : 'hover:bg-slate-800 hover:text-white'}`}>
+              <ShoppingCart size={18} /> Заказы <span className="ml-auto bg-orange-600 text-white text-[10px] px-1.5 py-0.5 rounded-full">12</span>
+            </button>
+          </nav>
+
+          <div className="text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-2 px-3 mt-6">Автоматизация</div>
+          <nav className="space-y-1">
+            <button onClick={() => {setActiveTab('suppliers'); setEditingSupplier(null); setViewingOrder(null);}} className={`w-full flex items-center gap-3 px-3 py-2.5 rounded text-[13px] font-medium transition-colors ${activeTab === 'suppliers' ? 'bg-orange-500 text-white' : 'hover:bg-slate-800 hover:text-white'}`}>
+              <Truck size={18} /> Поставщики и API
+            </button>
+            <button onClick={() => {setActiveTab('markup'); setEditingSupplier(null); setViewingOrder(null);}} className={`w-full flex items-center gap-3 px-3 py-2.5 rounded text-[13px] font-medium transition-colors ${activeTab === 'markup' ? 'bg-orange-500 text-white' : 'hover:bg-slate-800 hover:text-white'}`}>
+              <Percent size={18} /> Правила наценок
+            </button>
+            <button onClick={() => {setActiveTab('rules'); setEditingSupplier(null); setViewingOrder(null);}} className={`w-full flex items-center gap-3 px-3 py-2.5 rounded text-[13px] font-medium transition-colors ${activeTab === 'rules' ? 'bg-orange-500 text-white' : 'hover:bg-slate-800 hover:text-white'}`}>
+              <GitMerge size={18} /> Алгоритм выбора
+            </button>
+            <button onClick={() => {setActiveTab('monitoring'); setEditingSupplier(null); setViewingOrder(null);}} className={`w-full flex items-center gap-3 px-3 py-2.5 rounded text-[13px] font-medium transition-colors ${activeTab === 'monitoring' ? 'bg-orange-500 text-white' : 'hover:bg-slate-800 hover:text-white'}`}>
+              <Activity size={18} /> Логи и Мониторинг
+            </button>
+          </nav>
         </div>
 
-        <div className="flex flex-col md:flex-row gap-8">
-          {/* Sidebar */}
-          <div className="w-full md:w-64 shrink-0">
-            <div className="bg-white border border-slate-200 rounded-lg overflow-hidden">
-              <nav className="p-2">
-                <button onClick={() => {setActiveTab('dashboard'); setEditingSupplier(null); setViewingOrder(null);}} className={`w-full flex items-center gap-3 px-4 py-3 rounded text-[13px] font-bold transition-colors ${activeTab === 'dashboard' ? 'bg-orange-50 text-orange-600 border-l-2 border-orange-500' : 'text-slate-600 hover:bg-slate-50'}`}>
-                  <LayoutDashboard size={18} /> Дашборд
-                </button>
-                <button onClick={() => {setActiveTab('suppliers'); setEditingSupplier(null); setViewingOrder(null);}} className={`w-full flex items-center gap-3 px-4 py-3 rounded text-[13px] font-bold transition-colors ${activeTab === 'suppliers' ? 'bg-orange-50 text-orange-600 border-l-2 border-orange-500' : 'text-slate-600 hover:bg-slate-50'}`}>
-                  <Truck size={18} /> Поставщики
-                </button>
-                <button onClick={() => {setActiveTab('markup'); setEditingSupplier(null); setViewingOrder(null);}} className={`w-full flex items-center gap-3 px-4 py-3 rounded text-[13px] font-bold transition-colors ${activeTab === 'markup' ? 'bg-orange-50 text-orange-600 border-l-2 border-orange-500' : 'text-slate-600 hover:bg-slate-50'}`}>
-                  <Percent size={18} /> Наценки
-                </button>
-                <button onClick={() => {setActiveTab('rules'); setEditingSupplier(null); setViewingOrder(null);}} className={`w-full flex items-center gap-3 px-4 py-3 rounded text-[13px] font-bold transition-colors ${activeTab === 'rules' ? 'bg-orange-50 text-orange-600 border-l-2 border-orange-500' : 'text-slate-600 hover:bg-slate-50'}`}>
-                  <GitMerge size={18} /> Правила выбора
-                </button>
-                <button onClick={() => {setActiveTab('orders'); setEditingSupplier(null); setViewingOrder(null);}} className={`w-full flex items-center gap-3 px-4 py-3 rounded text-[13px] font-bold transition-colors ${activeTab === 'orders' ? 'bg-orange-50 text-orange-600 border-l-2 border-orange-500' : 'text-slate-600 hover:bg-slate-50'}`}>
-                  <ShoppingCart size={18} /> Заказы
-                </button>
-                <button onClick={() => {setActiveTab('monitoring'); setEditingSupplier(null); setViewingOrder(null);}} className={`w-full flex items-center gap-3 px-4 py-3 rounded text-[13px] font-bold transition-colors ${activeTab === 'monitoring' ? 'bg-orange-50 text-orange-600 border-l-2 border-orange-500' : 'text-slate-600 hover:bg-slate-50'}`}>
-                  <Activity size={18} /> Мониторинг
-                </button>
-              </nav>
+        <div className="p-4 border-t border-slate-800 shrink-0">
+          <button onClick={() => navigate('/admin/login')} className="w-full flex items-center gap-3 px-3 py-2.5 rounded text-[13px] font-medium text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+            <LogOut size={18} /> Выход
+          </button>
+        </div>
+      </aside>
+
+      {/* Main Content Area */}
+      <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
+        
+        {/* Top Header */}
+        <header className="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-6 shrink-0 z-10">
+          <div className="font-bold text-slate-800">
+            {activeTab === 'dashboard' && 'Обзор панели'}
+            {activeTab === 'orders' && 'Управление заказами'}
+            {activeTab === 'suppliers' && 'Настройка поставщиков'}
+            {activeTab === 'markup' && 'Управление ценообразованием'}
+            {activeTab === 'rules' && 'Настройка алгоритмов'}
+            {activeTab === 'monitoring' && 'Состояние системы'}
+          </div>
+          
+          <div className="flex items-center gap-4">
+            <div className="relative">
+              <input type="text" placeholder="Глобальный поиск..." className="bg-slate-100 border-none rounded-full px-4 text-[13px] py-1.5 outline-none focus:ring-2 w-64 focus:ring-orange-500" />
+              <Search size={14} className="absolute right-3 top-2 text-slate-400" />
+            </div>
+            <button className="text-slate-400 hover:text-slate-800 relative">
+              <Bell size={20} />
+              <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-white"></span>
+            </button>
+            <button className="text-slate-400 hover:text-slate-800">
+              <Settings size={20} />
+            </button>
+            <div className="w-8 h-8 rounded-full bg-orange-100 text-orange-600 font-bold flex items-center justify-center text-[12px] ml-2">
+              АД
             </div>
           </div>
+        </header>
 
-          {/* Content Area */}
-          <div className="flex-1">
+        {/* Scrollable Content */}
+        <main className="flex-1 overflow-y-auto p-6 lg:p-8">
+          <div className="max-w-6xl mx-auto">
             {activeTab === 'dashboard' && renderDashboard()}
             {activeTab === 'suppliers' && renderSuppliers()}
             {activeTab === 'markup' && renderMarkup()}
@@ -532,7 +575,7 @@ export const Admin: React.FC = () => {
             {activeTab === 'orders' && renderOrders()}
             {activeTab === 'monitoring' && renderMonitoring()}
           </div>
-        </div>
+        </main>
       </div>
     </div>
   );

@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { User, Package, Heart, MapPin, Settings, LogOut, Car, Shield } from 'lucide-react';
+import { useStore } from '../store';
+import { ProductCard } from '../components/ProductCard';
 
 export const Profile: React.FC = () => {
   const [activeTab, setActiveTab] = useState('garage');
+  const favorites = useStore((state) => state.favorites);
 
   return (
     <div className="bg-slate-50 min-h-screen py-8">
@@ -139,6 +142,23 @@ export const Profile: React.FC = () => {
                       </div>
                     </div>
                   </div>
+                </div>
+              )}
+
+              {activeTab === 'favorites' && (
+                <div>
+                  <h2 className="text-[18px] font-bold text-slate-900 mb-6 border-l-4 border-orange-500 pl-3">Сохраненные товары</h2>
+                  {favorites.length === 0 ? (
+                    <div className="text-slate-500 py-8 text-center text-[14px]">
+                      У вас пока нет сохраненных товаров.
+                    </div>
+                  ) : (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                      {favorites.map((product) => (
+                        <ProductCard key={product.id} product={product} />
+                      ))}
+                    </div>
+                  )}
                 </div>
               )}
 

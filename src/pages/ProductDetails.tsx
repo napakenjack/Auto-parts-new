@@ -2,11 +2,15 @@ import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Star, Truck, ShieldCheck, Heart, Share2, CheckCircle, AlertCircle, Minus, Plus, ShoppingCart } from 'lucide-react';
 import { products } from '../data/products';
+import { useStore } from '../store';
 
 export const ProductDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const product = products.find(p => p.id === id) || products[0]; // Fallback to first product for demo
   
+  const isFavorite = useStore((state) => state.isFavorite(product.id));
+  const toggleFavorite = useStore((state) => state.toggleFavorite);
+
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState('description');
 
@@ -51,8 +55,12 @@ export const ProductDetails: React.FC = () => {
                   {product.brand}
                 </div>
                 <div className="flex gap-2">
-                  <button className="p-2 text-slate-400 hover:text-red-500 transition-colors rounded-full hover:bg-slate-100">
-                    <Heart size={20} />
+                  <button 
+                    onClick={() => toggleFavorite(product)}
+                    className={`p-2 transition-colors rounded-full ${isFavorite ? 'text-orange-500 bg-orange-50' : 'text-slate-400 hover:text-orange-500 hover:bg-slate-100'}`}
+                    title={isFavorite ? "Убрать из избранного" : "В избранное"}
+                  >
+                    <Heart size={20} className={isFavorite ? 'fill-orange-500' : ''} />
                   </button>
                   <button className="p-2 text-slate-400 hover:text-orange-500 transition-colors rounded-full hover:bg-slate-100">
                     <Share2 size={20} />

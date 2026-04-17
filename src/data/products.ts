@@ -22,7 +22,7 @@ export const products: Product[] = [
     sku: 'BM-CP-9021',
     price: 45.99,
     oldPrice: 59.99,
-    image: 'https://images.unsplash.com/photo-1706288456423-72b5bb3a7bc6?q=80&w=687&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1600705722908-bab1e61c0b4d?auto=format&fit=crop&q=80&w=600',
     category: 'Тормоза',
     inStock: true,
     rating: 4.8,
@@ -36,7 +36,7 @@ export const products: Product[] = [
     brand: 'FilterPro',
     sku: 'FP-OF-105',
     price: 12.50,
-    image: 'https://images.unsplash.com/photo-1642075223291-f9ec545889fa?q=80&w=687&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1635784063858-6904f11a6176?auto=format&fit=crop&q=80&w=600',
     category: 'Фильтры',
     inStock: true,
     rating: 4.9,
@@ -51,7 +51,7 @@ export const products: Product[] = [
     sku: 'LD-H11-LED',
     price: 34.99,
     oldPrice: 49.99,
-    image: 'https://plus.unsplash.com/premium_photo-1694206014287-19bab1b68dca?q=80&w=1470&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1542315132-236f5b021d12?auto=format&fit=crop&q=80&w=600',
     category: 'Освещение',
     inStock: false,
     rating: 4.5,
@@ -65,7 +65,7 @@ export const products: Product[] = [
     brand: 'LubeMax',
     sku: 'LM-5W30-5Q',
     price: 28.99,
-    image: 'https://images.unsplash.com/photo-1552195634-fdabf904f26e?q=80&w=1470&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1610642372651-fe6e7bc209ef?auto=format&fit=crop&q=80&w=600',
     category: 'Жидкости',
     inStock: true,
     rating: 4.9,
@@ -80,7 +80,7 @@ export const products: Product[] = [
     sku: 'VT-12V-HD',
     price: 129.99,
     oldPrice: 149.99,
-    image: 'https://plus.unsplash.com/premium_photo-1681433401553-589104846604?q=80&w=2060&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&q=80&w=600',
     category: 'Аккумуляторы',
     inStock: true,
     rating: 4.7,
@@ -105,10 +105,10 @@ export const products: Product[] = [
 ];
 
 export const categories = [
-  { id: 'c1', name: 'Тормоза', icon: 'Disc' },
-  { id: 'c2', name: 'Фильтры', icon: 'Filter' },
-  { id: 'c3', name: 'Освещение', icon: 'Lightbulb' },
-  { id: 'c4', name: 'Аккумуляторы', icon: 'Battery' },
-  { id: 'c5', name: 'Подвеска', icon: 'Activity' },
-  { id: 'c6', name: 'Жидкости', icon: 'Droplet' }
+  { id: 'c1', name: 'Тормоза', icon: 'Disc', image: 'https://images.unsplash.com/photo-1600705722908-bab1e61c0b4d?auto=format&fit=crop&q=80&w=100' },
+  { id: 'c2', name: 'Фильтры', icon: 'Filter', image: 'https://images.unsplash.com/photo-1635784063858-6904f11a6176?auto=format&fit=crop&q=80&w=100' },
+  { id: 'c3', name: 'Освещение', icon: 'Lightbulb', image: 'https://images.unsplash.com/photo-1542315132-236f5b021d12?auto=format&fit=crop&q=80&w=100' },
+  { id: 'c4', name: 'Аккумуляторы', icon: 'Battery', image: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&q=80&w=100' },
+  { id: 'c5', name: 'Подвеска', icon: 'Activity', image: 'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&q=80&w=100' },
+  { id: 'c6', name: 'Жидкости', icon: 'Droplet', image: 'https://images.unsplash.com/photo-1610642372651-fe6e7bc209ef?auto=format&fit=crop&q=80&w=100' }
 ];

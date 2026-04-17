@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation, useSearchParams } from 'react-router-dom';
-import { Filter, ChevronDown, Check } from 'lucide-react';
+import { useLocation, useSearchParams, useNavigate } from 'react-router-dom';
+import { Filter, ChevronDown, Check, ChevronRight } from 'lucide-react';
 import { ProductCard } from '../components/ProductCard';
 import { products, categories } from '../data/products';
+import { CAR_BRANDS, TOYOTA_MODELS, TOYOTA_YEARS, ALL_CATEGORIES } from '../data/categories';
 
 export const Catalog: React.FC = () => {
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
   const categoryParam = searchParams.get('category');
   const searchParam = searchParams.get('search');
+  const brandParam = searchParams.get('brand');
+  const modelParam = searchParams.get('model');
+  const yearParam = searchParams.get('year');
   
   const [selectedCategory, setSelectedCategory] = useState(categoryParam || 'All');
   const [isMobileFiltersOpen, setIsMobileFiltersOpen] = useState(false);
@@ -23,14 +28,63 @@ export const Catalog: React.FC = () => {
     return true;
   });
 
+  const updateParam = (key: string, value: string) => {
+    const newParams = new URLSearchParams(searchParams);
+    if (value) {
+      newParams.set(key, value);
+    } else {
+      newParams.delete(key);
+    }
+    navigate(`/catalog?${newParams.toString()}`);
+  };
+
+  const clearSelection = (level: 'brand' | 'model' | 'year') => {
+    const newParams = new URLSearchParams(searchParams);
+    if (level === 'brand') {
+      newParams.delete('brand');
+      newParams.delete('model');
+      newParams.delete('year');
+    } else if (level === 'model') {
+      newParams.delete('model');
+      newParams.delete('year');
+    } else if (level === 'year') {
+      newParams.delete('year');
+    }
+    navigate(`/catalog?${newParams.toString()}`);
+  }
+
   return (
     <div className="bg-slate-50 min-h-screen py-8">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
         
         {/* Breadcrumbs & Title */}
         <div className="mb-6">
-          <div className="text-[11px] text-slate-500 mb-2 font-semibold tracking-wide uppercase">
-            Главная / Каталог {selectedCategory !== 'All' ? `/ ${selectedCategory}` : ''}
+          <div className="text-[11px] text-slate-500 mb-2 font-semibold tracking-wide uppercase flex flex-wrap gap-1 items-center">
+            <button onClick={() => navigate('/catalog')} className="hover:text-orange-500">Автомобили</button>
+            {brandParam && (
+              <>
+                <ChevronRight size={12} />
+                <button onClick={() => clearSelection('model')} className="hover:text-orange-500">{brandParam}</button>
+              </>
+            )}
+            {modelParam && (
+              <>
+                <ChevronRight size={12} />
+                <button onClick={() => clearSelection('year')} className="hover:text-orange-500">{modelParam}</button>
+              </>
+            )}
+            {yearParam && (
+              <>
+                <ChevronRight size={12} />
+                <span className="text-slate-800">{yearParam}</span>
+              </>
+            )}
+            {selectedCategory !== 'All' && (
+              <>
+                <ChevronRight size={12} />
+                <span className="text-orange-500">{selectedCategory}</span>
+              </>
+            )}
           </div>
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
@@ -95,14 +149,14 @@ export const Catalog: React.FC = () => {
                       {selectedCategory === 'All' && <Check size={14} />}
                     </button>
                   </li>
-                  {categories.map(cat => (
-                    <li key={cat.id}>
+                  {ALL_CATEGORIES.flatMap(group => group.items).slice(0, 15).map((catName, idx) => (
+                    <li key={idx}>
                       <button 
-                        onClick={() => setSelectedCategory(cat.name)}
-                        className={`text-[13px] w-full text-left flex justify-between items-center ${selectedCategory === cat.name ? 'text-orange-500 font-bold' : 'text-slate-600 hover:text-orange-500'}`}
+                        onClick={() => setSelectedCategory(catName)}
+                        className={`text-[13px] w-full text-left flex justify-between items-center ${selectedCategory === catName ? 'text-orange-500 font-bold' : 'text-slate-600 hover:text-orange-500'}`}
                       >
-                        {cat.name}
-                        {selectedCategory === cat.name && <Check size={14} />}
+                        {catName}
+                        {selectedCategory === catName && <Check size={14} />}
                       </button>
                     </li>
                   ))}
@@ -135,12 +189,132 @@ export const Catalog: React.FC = () => {
                 </label>
               </div>
 
+              <hr className="border-slate-200 my-6" />
+
+              {/* Mock Filters (Ось, Расположение, etc) */}
+              <div className="space-y-6">
+                <div>
+                  <h3 className="text-[13px] font-bold text-slate-900 mb-2">Ось</h3>
+                  <div className="space-y-1">
+                    <label className="flex items-center gap-2 cursor-pointer text-[13px] text-slate-600 hover:text-orange-500"><input type="checkbox" className="rounded border-slate-300 text-orange-500 focus:ring-orange-500" /> Передняя ось</label>
+                    <label className="flex items-center gap-2 cursor-pointer text-[13px] text-slate-600 hover:text-orange-500"><input type="checkbox" className="rounded border-slate-300 text-orange-500 focus:ring-orange-500" /> Задняя ось</label>
+                  </div>
+                </div>
+                
+                <div>
+                  <h3 className="text-[13px] font-bold text-slate-900 mb-2">Расположение</h3>
+                  <div className="space-y-1">
+                    <label className="flex items-center gap-2 cursor-pointer text-[13px] text-slate-600 hover:text-orange-500"><input type="checkbox" className="rounded border-slate-300 text-orange-500 focus:ring-orange-500" /> Справа</label>
+                    <label className="flex items-center gap-2 cursor-pointer text-[13px] text-slate-600 hover:text-orange-500"><input type="checkbox" className="rounded border-slate-300 text-orange-500 focus:ring-orange-500" /> Слева</label>
+                  </div>
+                </div>
+
+                <div>
+                  <h3 className="text-[13px] font-bold text-slate-900 mb-2">Вентиляция</h3>
+                  <div className="space-y-1">
+                    <label className="flex items-center gap-2 cursor-pointer text-[13px] text-slate-600 hover:text-orange-500"><input type="checkbox" className="rounded border-slate-300 text-orange-500 focus:ring-orange-500" /> Вентилируемые</label>
+                    <label className="flex items-center gap-2 cursor-pointer text-[13px] text-slate-600 hover:text-orange-500"><input type="checkbox" className="rounded border-slate-300 text-orange-500 focus:ring-orange-500" /> Невентилируемые</label>
+                  </div>
+                </div>
+
+                <div>
+                  <h3 className="text-[13px] font-bold text-slate-900 mb-2">Насечки и перфорация</h3>
+                  <div className="space-y-1">
+                    <label className="flex items-center gap-2 cursor-pointer text-[13px] text-slate-600 hover:text-orange-500"><input type="checkbox" className="rounded border-slate-300 text-orange-500 focus:ring-orange-500" /> С перфорацией</label>
+                    <label className="flex items-center gap-2 cursor-pointer text-[13px] text-slate-600 hover:text-orange-500"><input type="checkbox" className="rounded border-slate-300 text-orange-500 focus:ring-orange-500" /> С насечками</label>
+                    <label className="flex items-center gap-2 cursor-pointer text-[13px] text-slate-600 hover:text-orange-500"><input type="checkbox" className="rounded border-slate-300 text-orange-500 focus:ring-orange-500" /> Обе опции</label>
+                    <label className="flex items-center gap-2 cursor-pointer text-[13px] text-slate-600 hover:text-orange-500"><input type="checkbox" className="rounded border-slate-300 text-orange-500 focus:ring-orange-500" /> С несквозным сверлением (ямками)</label>
+                  </div>
+                </div>
+
+                <div>
+                  <h3 className="text-[13px] font-bold text-slate-900 mb-2">Покрытие</h3>
+                  <div className="space-y-1">
+                    <label className="flex items-center gap-2 cursor-pointer text-[13px] text-slate-600 hover:text-orange-500"><input type="checkbox" className="rounded border-slate-300 text-orange-500 focus:ring-orange-500" /> С антикоррозионным покрытием</label>
+                    <label className="flex items-center gap-2 cursor-pointer text-[13px] text-slate-600 hover:text-orange-500"><input type="checkbox" className="rounded border-slate-300 text-orange-500 focus:ring-orange-500" /> Без покрытия</label>
+                  </div>
+                </div>
+
+                <div>
+                  <h3 className="text-[13px] font-bold text-slate-900 mb-2">Сплав (легирование)</h3>
+                  <div className="space-y-1">
+                    <label className="flex items-center gap-2 cursor-pointer text-[13px] text-slate-600 hover:text-orange-500"><input type="checkbox" className="rounded border-slate-300 text-orange-500 focus:ring-orange-500" /> Высокоуглеродистый</label>
+                  </div>
+                </div>
+                
+                <div>
+                  <h3 className="text-[13px] font-bold text-slate-900 mb-2">Конструкция</h3>
+                  <div className="space-y-1">
+                    <label className="flex items-center gap-2 cursor-pointer text-[13px] text-slate-600 hover:text-orange-500"><input type="checkbox" className="rounded border-slate-300 text-orange-500 focus:ring-orange-500" /> Сдвоенные</label>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </aside>
 
-          {/* Product Grid */}
+          {/* Product Grid / Navigation Space */}
           <div className="flex-1">
-            {/* Toolbar */}
+
+            {/* Vehicle Selection Navigation */}
+            {!brandParam ? (
+              <div className="bg-white border border-slate-200 rounded-lg p-6 mb-6">
+                <h2 className="text-lg font-bold text-slate-900 mb-4 border-l-4 border-orange-500 pl-3">Выберите марку автомобиля</h2>
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2">
+                  {CAR_BRANDS.map(brand => (
+                    <button 
+                      key={brand}
+                      onClick={() => updateParam('brand', brand)}
+                      className="text-[13px] border border-slate-200 p-2 text-center rounded hover:border-orange-500 hover:text-orange-600 transition-colors bg-slate-50 hover:bg-orange-50"
+                    >
+                      {brand}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            ) : brandParam && !modelParam ? (
+              <div className="bg-white border border-slate-200 rounded-lg p-6 mb-6">
+                <div className="flex items-center gap-4 mb-4">
+                  <h2 className="text-lg font-bold text-slate-900 border-l-4 border-orange-500 pl-3">Модели {brandParam}</h2>
+                  <button onClick={() => clearSelection('brand')} className="text-[12px] text-slate-500 hover:text-orange-500 underline">Все марки</button>
+                </div>
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2">
+                  {/* Using TOYOTA_MODELS as a mock for all brands, in real app it would fetch based on brand */}
+                  {TOYOTA_MODELS.map(model => (
+                    <button 
+                      key={model}
+                      onClick={() => updateParam('model', model)}
+                      className="text-[13px] border border-slate-200 p-2 text-center rounded hover:border-orange-500 hover:text-orange-600 transition-colors bg-slate-50 hover:bg-orange-50"
+                    >
+                      {model}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            ) : brandParam && modelParam && !yearParam ? (
+              <div className="bg-white border border-slate-200 rounded-lg p-6 mb-6">
+                <div className="flex items-center gap-4 mb-4">
+                  <h2 className="text-lg font-bold text-slate-900 border-l-4 border-orange-500 pl-3">Год выпуска: {brandParam} {modelParam}</h2>
+                  <button onClick={() => clearSelection('model')} className="text-[12px] text-slate-500 hover:text-orange-500 underline">Назад к моделям</button>
+                </div>
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
+                  {TOYOTA_YEARS.map(year => (
+                    <button 
+                      key={year}
+                      onClick={() => updateParam('year', year)}
+                      className="text-[13px] border border-slate-200 p-2 text-center rounded hover:border-orange-500 hover:text-orange-600 transition-colors bg-slate-50 hover:bg-orange-50 font-bold"
+                    >
+                      {year}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            ) : null}
+
+            {/* Content Display */}
+            {yearParam || searchParam || categoryParam !== null ? (
+              <>
+                {/* Toolbar */}
             <div className="bg-white border border-slate-200 rounded-lg p-3 mb-6 flex justify-between items-center">
               <div className="text-[13px] text-slate-500">
                 Показано <span className="font-bold text-slate-900">{filteredProducts.length}</span> результатов
@@ -202,6 +376,19 @@ export const Catalog: React.FC = () => {
                 </div>
               </div>
             )}
+              </>
+            ) : (
+              <div className="bg-white border border-slate-200 rounded-lg p-12 text-center">
+                <div className="w-16 h-16 bg-slate-100 rounded-full mx-auto flex items-center justify-center mb-4">
+                  <span className="text-2xl">🚗</span>
+                </div>
+                <h3 className="text-xl font-bold text-slate-900 mb-2">Выберите параметры автомобиля</h3>
+                <p className="text-slate-500 max-w-md mx-auto">
+                  Для точного подбора запчастей выберите марку, модель и год выпуска вашего транспортного средства.
+                </p>
+              </div>
+            )}
+
           </div>
         </div>
       </div>

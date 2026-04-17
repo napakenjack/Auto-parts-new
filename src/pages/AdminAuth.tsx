@@ -10,7 +10,7 @@ export const AdminAuth: React.FC = () => {
   };
 
   return (
-    <div className="bg-slate-900 min-h-[80vh] flex items-center justify-center py-12 px-4">
+    <div className="bg-slate-900 h-screen flex items-center justify-center py-12 px-4">
       <div className="max-w-md w-full bg-white border border-slate-200 rounded-xl p-8 shadow-sm">
         <div className="text-center mb-8">
           <h1 className="text-[24px] font-bold text-slate-900 mb-2">Панель управления</h1>

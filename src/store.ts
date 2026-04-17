@@ -18,11 +18,15 @@ interface StoreState {
   addNews: (newsItem: NewsItem) => void;
   updateNews: (newsItem: NewsItem) => void;
   deleteNews: (id: string) => void;
+  city: string;
+  setCity: (city: string) => void;
 }
 
 export const useStore = create<StoreState>()(
   persist(
     (set, get) => ({
+      city: 'Астана',
+      setCity: (city) => set({ city }),
       favorites: [products[0]], // Добавляем один товар в избранное по умолчанию
       toggleFavorite: (product) => {
         const { favorites } = get();

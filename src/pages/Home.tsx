@@ -11,9 +11,39 @@ export const Home: React.FC = () => {
   const news = useStore(state => state.news);
 
   return (
-    <div className="bg-slate-50 min-h-screen flex flex-col">
-      {/* Hero Section */}
-      <section className="bg-slate-800 text-white py-12 px-6 flex flex-col items-center justify-center text-center relative overflow-hidden">
+    <div className="bg-slate-50 min-h-screen">
+      <div className="max-w-[1920px] mx-auto w-full flex">
+        
+        {/* Persistent Left Sidebar Catalog */}
+        <aside className="w-[280px] xl:w-[320px] shrink-0 hidden lg:block bg-white border-r border-slate-200 min-h-[calc(100vh-104px)] shadow-[1px_0_10px_rgba(0,0,0,0.02)]">
+          <div className="p-5 sticky top-[104px]">
+            <h2 className="text-[14px] font-bold text-slate-900 mb-4 uppercase tracking-wider text-center bg-slate-100 py-2 rounded">Каталог Запчастей</h2>
+            <nav className="flex flex-col space-y-3">
+              {ALL_CATEGORIES.map((catGroup, i) => (
+                <div key={i}>
+                  <div className="px-3 py-1.5 text-[12px] font-bold text-slate-400 uppercase tracking-widest">{catGroup.group}</div>
+                  <div className="flex flex-col">
+                    {catGroup.items.map((item, j) => (
+                      <Link 
+                        key={j} 
+                        to={`/catalog?category=${encodeURIComponent(item)}`}
+                        className="text-[13px] text-slate-700 hover:text-orange-600 hover:bg-orange-50 px-3 py-2 rounded-md transition-colors block"
+                      >
+                        {item}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </nav>
+          </div>
+        </aside>
+
+        {/* Main Content Area */}
+        <div className="flex-1 flex flex-col min-w-0">
+          
+          {/* Hero Section */}
+          <section className="bg-slate-800 text-white py-12 px-6 flex flex-col items-center justify-center text-center relative overflow-hidden">
         <div className="absolute inset-0 opacity-10 bg-[url('https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&q=80&w=1920')] bg-cover bg-center"></div>
         <div className="relative z-10 w-full max-w-3xl">
           <h1 className="text-[28px] md:text-[36px] font-bold mb-3">Быстрый поиск автозапчастей</h1>
@@ -41,10 +71,10 @@ export const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Main Content */}
-      <main className="p-4 md:p-6 lg:p-8 flex-grow max-w-[1920px] mx-auto w-full">
-        
-        {/* News Feed Section */}
+        {/* Main Content Padding */}
+        <main className="p-4 md:p-6 lg:p-8 flex-grow w-full">
+          
+          {/* News Feed Section */}
         {news.length > 0 && (
           <div className="mb-12">
             <div className="flex justify-between items-center mb-6">
@@ -103,13 +133,15 @@ export const Home: React.FC = () => {
           <h2 className="text-[16px] font-bold border-l-4 border-orange-500 pl-3 text-slate-900">Лучшие предложения</h2>
         </div>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {featuredProducts.map(product => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
 
-      </main>
+        </main>
+      </div>
+    </div>
     </div>
   );
 };

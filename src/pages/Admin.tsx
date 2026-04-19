@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import {
   LayoutDashboard, Truck, Percent, GitMerge, ShoppingCart, Activity,
   ArrowLeft, Search, Filter, Edit, CheckCircle, XCircle,
-  Plus, Save, LogOut, Newspaper, Trash2
+  Plus, Save, LogOut, Newspaper, Trash2, Menu, X
 } from 'lucide-react';
 import { useStore, NewsItem } from '../store';
 
@@ -12,6 +12,7 @@ export const Admin: React.FC = () => {
   const [editingSupplier, setEditingSupplier] = useState<any>(null);
   const [viewingOrder, setViewingOrder] = useState<any>(null);
   const [editingNews, setEditingNews] = useState<Partial<NewsItem> | null>(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
   const { news, addNews, updateNews, deleteNews } = useStore();
 
@@ -82,14 +83,14 @@ export const Admin: React.FC = () => {
 
     return (
       <div>
-        <div className="flex justify-between items-center mb-6">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
           <h2 className="text-[18px] font-bold text-slate-900 border-l-4 border-orange-500 pl-3">Поставщики</h2>
           <button onClick={() => setEditingSupplier({})} className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded text-[13px] font-bold flex items-center gap-2">
             <Plus size={16} /> Добавить поставщика
           </button>
         </div>
-        <div className="bg-white border border-slate-200 rounded-lg overflow-hidden">
-          <table className="w-full text-left text-[13px]">
+        <div className="bg-white border border-slate-200 rounded-lg overflow-hidden overflow-x-auto">
+          <table className="w-full min-w-[500px] text-left text-[13px]">
             <thead className="bg-slate-50 border-b border-slate-200 text-slate-500 uppercase tracking-wider text-[11px]">
               <tr>
                 <th className="p-4 font-bold">Название</th>
@@ -142,7 +143,7 @@ export const Admin: React.FC = () => {
             <label className="block text-[13px] font-bold text-slate-700 mb-1">API Ключи (JSON / Bearer)</label>
             <textarea className="w-full border border-slate-200 rounded p-2.5 outline-none focus:border-orange-500 text-[14px] font-mono h-20" defaultValue="sk_live_123456789"></textarea>
           </div>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-[13px] font-bold text-slate-700 mb-1">Лимиты (запросов/сек)</label>
               <input type="number" defaultValue="10" className="w-full border border-slate-200 rounded p-2.5 outline-none focus:border-orange-500 text-[14px]" />
@@ -164,11 +165,11 @@ export const Admin: React.FC = () => {
             <input type="checkbox" id="active-switch" defaultChecked className="w-4 h-4 text-orange-500 focus:ring-orange-500 border-slate-300 rounded" />
             <label htmlFor="active-switch" className="text-[14px] font-bold text-slate-900">Активен</label>
           </div>
-          <div className="pt-6 flex gap-3">
-            <button className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2.5 rounded text-[13px] font-bold flex items-center gap-2">
+          <div className="pt-6 flex flex-col sm:flex-row gap-3">
+            <button className="w-full sm:w-auto justify-center bg-orange-500 hover:bg-orange-600 text-white px-6 py-2.5 rounded text-[13px] font-bold flex items-center gap-2">
               <Save size={16} /> Сохранить
             </button>
-            <button onClick={() => setEditingSupplier(null)} className="bg-slate-100 hover:bg-slate-200 text-slate-700 px-6 py-2.5 rounded text-[13px] font-bold">
+            <button onClick={() => setEditingSupplier(null)} className="w-full sm:w-auto justify-center bg-slate-100 hover:bg-slate-200 text-slate-700 px-6 py-2.5 rounded text-[13px] font-bold">
               Отмена
             </button>
           </div>
@@ -210,25 +211,25 @@ export const Admin: React.FC = () => {
             <div>
               <label className="block text-[13px] font-bold text-slate-700 mb-2">Наценка по сумме заказа</label>
               <div className="border border-slate-200 rounded divide-y divide-slate-200">
-                <div className="flex items-center gap-4 p-3 bg-slate-50 text-[13px]">
-                  <input type="number" defaultValue="0" className="w-20 border border-slate-200 rounded p-1 text-center" />
+                <div className="flex flex-wrap items-center gap-2 sm:gap-4 p-3 bg-slate-50 text-[13px]">
+                  <input type="number" defaultValue="0" className="w-16 sm:w-20 border border-slate-200 rounded p-1 text-center" />
                   <span>до</span>
-                  <input type="number" defaultValue="1000" className="w-20 border border-slate-200 rounded p-1 text-center" />
+                  <input type="number" defaultValue="1000" className="w-16 sm:w-20 border border-slate-200 rounded p-1 text-center" />
                   <span>₸</span>
-                  <div className="flex-1 text-right">
+                  <div className="flex-1 text-left sm:text-right w-full sm:w-auto mt-2 sm:mt-0">
                     <span className="mr-2">наценка:</span>
-                    <input type="number" defaultValue="200" className="w-20 border border-slate-200 rounded p-1 text-center font-bold text-orange-600" />
+                    <input type="number" defaultValue="200" className="w-16 sm:w-20 border border-slate-200 rounded p-1 text-center font-bold text-orange-600" />
                     <span>%</span>
                   </div>
                 </div>
-                <div className="flex items-center gap-4 p-3 bg-slate-50 text-[13px]">
-                  <input type="number" defaultValue="1001" className="w-20 border border-slate-200 rounded p-1 text-center" />
+                <div className="flex flex-wrap items-center gap-2 sm:gap-4 p-3 bg-slate-50 text-[13px]">
+                  <input type="number" defaultValue="1001" className="w-16 sm:w-20 border border-slate-200 rounded p-1 text-center" />
                   <span>до</span>
-                  <input type="number" defaultValue="5000" className="w-20 border border-slate-200 rounded p-1 text-center" />
+                  <input type="number" defaultValue="5000" className="w-16 sm:w-20 border border-slate-200 rounded p-1 text-center" />
                   <span>₸</span>
-                  <div className="flex-1 text-right">
+                  <div className="flex-1 text-left sm:text-right w-full sm:w-auto mt-2 sm:mt-0">
                     <span className="mr-2">наценка:</span>
-                    <input type="number" defaultValue="100" className="w-20 border border-slate-200 rounded p-1 text-center font-bold text-orange-600" />
+                    <input type="number" defaultValue="100" className="w-16 sm:w-20 border border-slate-200 rounded p-1 text-center font-bold text-orange-600" />
                     <span>%</span>
                   </div>
                 </div>
@@ -566,7 +567,7 @@ export const Admin: React.FC = () => {
                   placeholder="Описание новости..."
                 ></textarea>
               </div>
-              <div className="pt-4 flex gap-3">
+              <div className="pt-4 flex flex-col sm:flex-row gap-3">
                 <button 
                   onClick={() => {
                     const toSave = { 
@@ -578,11 +579,11 @@ export const Admin: React.FC = () => {
                     else addNews(toSave);
                     setEditingNews(null);
                   }}
-                  className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2.5 rounded text-[13px] font-bold flex items-center gap-2"
+                  className="w-full sm:w-auto justify-center bg-orange-500 hover:bg-orange-600 text-white px-6 py-2.5 rounded text-[13px] font-bold flex items-center gap-2"
                 >
                   <Save size={16} /> Сохранить
                 </button>
-                <button onClick={() => setEditingNews(null)} className="bg-slate-100 hover:bg-slate-200 text-slate-700 px-6 py-2.5 rounded text-[13px] font-bold">
+                <button onClick={() => setEditingNews(null)} className="w-full sm:w-auto justify-center bg-slate-100 hover:bg-slate-200 text-slate-700 px-6 py-2.5 rounded text-[13px] font-bold">
                   Отмена
                 </button>
               </div>
@@ -594,7 +595,7 @@ export const Admin: React.FC = () => {
 
     return (
       <div>
-        <div className="flex justify-between items-center mb-6">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
           <h2 className="text-[18px] font-bold text-slate-900 border-l-4 border-orange-500 pl-3">Лента новостей</h2>
           <button 
             onClick={() => setEditingNews({ title: '', content: '', image: '' })} 
@@ -604,8 +605,8 @@ export const Admin: React.FC = () => {
           </button>
         </div>
 
-        <div className="bg-white border border-slate-200 rounded-lg overflow-hidden">
-          <table className="w-full text-left text-[13px]">
+        <div className="bg-white border border-slate-200 rounded-lg overflow-hidden overflow-x-auto">
+          <table className="w-full min-w-[500px] text-left text-[13px]">
             <thead className="bg-slate-50 border-b border-slate-200 text-slate-500 uppercase tracking-wider text-[11px]">
               <tr>
                 <th className="p-4 font-bold">Фото</th>
@@ -676,11 +677,11 @@ export const Admin: React.FC = () => {
         </div>
       </div>
 
-      <div className="bg-white border border-slate-200 rounded-lg overflow-hidden">
-        <div className="p-4 border-b border-slate-200 bg-slate-50">
+      <div className="bg-white border border-slate-200 rounded-lg overflow-hidden overflow-x-auto">
+        <div className="p-4 border-b border-slate-200 bg-slate-50 min-w-[600px]">
           <h3 className="font-bold text-slate-900">Повторные и неудачные задачи (Jobs)</h3>
         </div>
-        <table className="w-full text-left text-[13px]">
+        <table className="w-full min-w-[600px] text-left text-[13px]">
           <thead className="bg-white border-b border-slate-200 text-slate-500 uppercase tracking-wider text-[11px]">
             <tr>
               <th className="p-4 font-bold">ID Задачи</th>
@@ -716,46 +717,59 @@ export const Admin: React.FC = () => {
   );
 
   return (
-    <div className="flex h-screen bg-slate-100 font-sans text-slate-800 overflow-hidden">
+    <div className="flex h-screen bg-slate-100 font-sans text-slate-800 overflow-hidden relative">
+      {/* Mobile Menu Overlay */}
+      {isMobileMenuOpen && (
+        <div 
+          className="fixed inset-0 bg-slate-900/50 z-40 lg:hidden cursor-pointer backdrop-blur-sm"
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+      )}
+
       {/* Sidebar */}
-      <aside className="w-64 bg-slate-900 text-slate-300 flex flex-col shrink-0">
-        <div className="h-16 flex items-center px-6 border-b border-slate-800 shrink-0">
-          <Link to="/" className="font-extrabold text-[20px] flex items-center gap-1 tracking-tight">
-            <span className="text-white">Opt</span><span className="text-orange-500">Parts</span>
-          </Link>
-          <span className="ml-2 text-[10px] bg-slate-800 px-2 py-0.5 rounded text-slate-400 font-bold uppercase tracking-wider">Admin</span>
+      <aside className={`fixed inset-y-0 left-0 z-50 w-64 bg-slate-900 text-slate-300 flex flex-col shrink-0 transition-transform duration-300 lg:static lg:translate-x-0 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+        <div className="h-16 flex items-center justify-between px-6 border-b border-slate-800 shrink-0">
+          <div className="flex items-center">
+            <Link to="/" className="font-extrabold text-[20px] flex items-center gap-1 tracking-tight">
+              <span className="text-white">Opt</span><span className="text-orange-500">Parts</span>
+            </Link>
+            <span className="ml-2 text-[10px] bg-slate-800 px-2 py-0.5 rounded text-slate-400 font-bold uppercase tracking-wider">Admin</span>
+          </div>
+          <button className="lg:hidden text-slate-400 hover:text-white p-1" onClick={() => setIsMobileMenuOpen(false)}>
+            <X size={20} />
+          </button>
         </div>
         
         <div className="p-4 flex-1 overflow-y-auto">
           <div className="text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-2 px-3 mt-2">Управление</div>
           <nav className="space-y-1">
-            <button onClick={() => {setActiveTab('dashboard'); setEditingSupplier(null); setViewingOrder(null); setEditingNews(null);}} className={`w-full flex items-center gap-3 px-3 py-2.5 rounded text-[13px] font-medium transition-colors ${activeTab === 'dashboard' ? 'bg-orange-500 text-white' : 'hover:bg-slate-800 hover:text-white'}`}>
+            <button onClick={() => {setActiveTab('dashboard'); setEditingSupplier(null); setViewingOrder(null); setEditingNews(null); setIsMobileMenuOpen(false);}} className={`w-full flex items-center gap-3 px-3 py-2.5 rounded text-[13px] font-medium transition-colors ${activeTab === 'dashboard' ? 'bg-orange-500 text-white' : 'hover:bg-slate-800 hover:text-white'}`}>
               <LayoutDashboard size={18} /> Дашборд
             </button>
-            <button onClick={() => {setActiveTab('orders'); setEditingSupplier(null); setViewingOrder(null); setEditingNews(null);}} className={`w-full flex items-center gap-3 px-3 py-2.5 rounded text-[13px] font-medium transition-colors ${activeTab === 'orders' ? 'bg-orange-500 text-white' : 'hover:bg-slate-800 hover:text-white'}`}>
+            <button onClick={() => {setActiveTab('orders'); setEditingSupplier(null); setViewingOrder(null); setEditingNews(null); setIsMobileMenuOpen(false);}} className={`w-full flex items-center gap-3 px-3 py-2.5 rounded text-[13px] font-medium transition-colors ${activeTab === 'orders' ? 'bg-orange-500 text-white' : 'hover:bg-slate-800 hover:text-white'}`}>
               <ShoppingCart size={18} /> Заказы <span className="ml-auto bg-orange-600 text-white text-[10px] px-1.5 py-0.5 rounded-full">12</span>
             </button>
           </nav>
 
           <div className="text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-2 px-3 mt-6">Сайт контент</div>
           <nav className="space-y-1">
-            <button onClick={() => {setActiveTab('news'); setEditingSupplier(null); setViewingOrder(null); setEditingNews(null);}} className={`w-full flex items-center gap-3 px-3 py-2.5 rounded text-[13px] font-medium transition-colors ${activeTab === 'news' ? 'bg-orange-500 text-white' : 'hover:bg-slate-800 hover:text-white'}`}>
+            <button onClick={() => {setActiveTab('news'); setEditingSupplier(null); setViewingOrder(null); setEditingNews(null); setIsMobileMenuOpen(false);}} className={`w-full flex items-center gap-3 px-3 py-2.5 rounded text-[13px] font-medium transition-colors ${activeTab === 'news' ? 'bg-orange-500 text-white' : 'hover:bg-slate-800 hover:text-white'}`}>
               <Newspaper size={18} /> Лента новостей
             </button>
           </nav>
 
           <div className="text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-2 px-3 mt-6">Автоматизация</div>
           <nav className="space-y-1">
-            <button onClick={() => {setActiveTab('suppliers'); setEditingSupplier(null); setViewingOrder(null); setEditingNews(null);}} className={`w-full flex items-center gap-3 px-3 py-2.5 rounded text-[13px] font-medium transition-colors ${activeTab === 'suppliers' ? 'bg-orange-500 text-white' : 'hover:bg-slate-800 hover:text-white'}`}>
+            <button onClick={() => {setActiveTab('suppliers'); setEditingSupplier(null); setViewingOrder(null); setEditingNews(null); setIsMobileMenuOpen(false);}} className={`w-full flex items-center gap-3 px-3 py-2.5 rounded text-[13px] font-medium transition-colors ${activeTab === 'suppliers' ? 'bg-orange-500 text-white' : 'hover:bg-slate-800 hover:text-white'}`}>
               <Truck size={18} /> Поставщики и API
             </button>
-            <button onClick={() => {setActiveTab('markup'); setEditingSupplier(null); setViewingOrder(null); setEditingNews(null);}} className={`w-full flex items-center gap-3 px-3 py-2.5 rounded text-[13px] font-medium transition-colors ${activeTab === 'markup' ? 'bg-orange-500 text-white' : 'hover:bg-slate-800 hover:text-white'}`}>
+            <button onClick={() => {setActiveTab('markup'); setEditingSupplier(null); setViewingOrder(null); setEditingNews(null); setIsMobileMenuOpen(false);}} className={`w-full flex items-center gap-3 px-3 py-2.5 rounded text-[13px] font-medium transition-colors ${activeTab === 'markup' ? 'bg-orange-500 text-white' : 'hover:bg-slate-800 hover:text-white'}`}>
               <Percent size={18} /> Правила наценок
             </button>
-            <button onClick={() => {setActiveTab('rules'); setEditingSupplier(null); setViewingOrder(null); setEditingNews(null);}} className={`w-full flex items-center gap-3 px-3 py-2.5 rounded text-[13px] font-medium transition-colors ${activeTab === 'rules' ? 'bg-orange-500 text-white' : 'hover:bg-slate-800 hover:text-white'}`}>
+            <button onClick={() => {setActiveTab('rules'); setEditingSupplier(null); setViewingOrder(null); setEditingNews(null); setIsMobileMenuOpen(false);}} className={`w-full flex items-center gap-3 px-3 py-2.5 rounded text-[13px] font-medium transition-colors ${activeTab === 'rules' ? 'bg-orange-500 text-white' : 'hover:bg-slate-800 hover:text-white'}`}>
               <GitMerge size={18} /> Алгоритм выбора
             </button>
-            <button onClick={() => {setActiveTab('monitoring'); setEditingSupplier(null); setViewingOrder(null); setEditingNews(null);}} className={`w-full flex items-center gap-3 px-3 py-2.5 rounded text-[13px] font-medium transition-colors ${activeTab === 'monitoring' ? 'bg-orange-500 text-white' : 'hover:bg-slate-800 hover:text-white'}`}>
+            <button onClick={() => {setActiveTab('monitoring'); setEditingSupplier(null); setViewingOrder(null); setEditingNews(null); setIsMobileMenuOpen(false);}} className={`w-full flex items-center gap-3 px-3 py-2.5 rounded text-[13px] font-medium transition-colors ${activeTab === 'monitoring' ? 'bg-orange-500 text-white' : 'hover:bg-slate-800 hover:text-white'}`}>
               <Activity size={18} /> Логи и Мониторинг
             </button>
           </nav>
@@ -772,27 +786,35 @@ export const Admin: React.FC = () => {
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
         
         {/* Top Header */}
-        <header className="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-6 shrink-0 z-10">
-          <div className="font-bold text-slate-800">
-            {activeTab === 'dashboard' && 'Обзор панели'}
-            {activeTab === 'orders' && 'Управление заказами'}
-            {activeTab === 'suppliers' && 'Настройка поставщиков'}
-            {activeTab === 'markup' && 'Управление ценообразованием'}
-            {activeTab === 'rules' && 'Настройка алгоритмов'}
-            {activeTab === 'monitoring' && 'Состояние системы'}
-            {activeTab === 'news' && 'Лента новостей'}
+        <header className="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-4 lg:px-6 shrink-0 z-10 gap-2">
+          <div className="flex items-center gap-3">
+            <button 
+              className="lg:hidden text-slate-500 hover:text-orange-500 p-1"
+              onClick={() => setIsMobileMenuOpen(true)}
+            >
+              <Menu size={24} />
+            </button>
+            <div className="font-bold text-slate-800 hidden sm:block">
+              {activeTab === 'dashboard' && 'Обзор панели'}
+              {activeTab === 'orders' && 'Управление заказами'}
+              {activeTab === 'suppliers' && 'Настройка поставщиков'}
+              {activeTab === 'markup' && 'Управление ценообразованием'}
+              {activeTab === 'rules' && 'Настройка алгоритмов'}
+              {activeTab === 'monitoring' && 'Состояние системы'}
+              {activeTab === 'news' && 'Лента новостей'}
+            </div>
           </div>
           
-          <div className="flex items-center gap-4">
-            <div className="relative">
-              <input type="text" placeholder="Глобальный поиск..." className="bg-slate-100 border-none rounded-full px-4 text-[13px] py-1.5 outline-none focus:ring-2 w-64 focus:ring-orange-500" />
+          <div className="flex items-center gap-4 flex-1 sm:flex-none justify-end">
+            <div className="relative w-full max-w-xs">
+              <input type="text" placeholder="Поиск..." className="bg-slate-100 border-none rounded-full px-4 text-[13px] py-1.5 outline-none focus:ring-2 w-full sm:w-64 focus:ring-orange-500" />
               <Search size={14} className="absolute right-3 top-2 text-slate-400" />
             </div>
           </div>
         </header>
 
         {/* Scrollable Content */}
-        <main className="flex-1 overflow-y-auto p-6 lg:p-8">
+        <main className="flex-1 overflow-y-auto p-4 lg:p-8">
           <div className="max-w-6xl mx-auto">
             {activeTab === 'dashboard' && renderDashboard()}
             {activeTab === 'news' && renderNews()}
